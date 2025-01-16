@@ -15,8 +15,8 @@ class GildedRose {
 
             // We can also define a normal quality adjustment of -1 and double it in case of expiry:
             //
-            // - In case of Aged Brie, we then multiply with -1 to invert the quality adjustment
-            // - In case of Conjured, we then multiply with 2 to double the quality adjustment
+            // - In case of Aged Brie, we multiply with -1 to invert the quality adjustment
+            // - In case of Conjured, we multiply with 2 to double the quality adjustment
             //
             // This keeps Aged Brie and Conjured adjustments "pegged" (i.e. relative) to the normal value adjustment if
             // that is what is required in all circumstances
@@ -25,7 +25,6 @@ class GildedRose {
             // final int normalAdjustment = isExpired ? -2 : -1;
 
             switch (item.name) {
-//                case "Aged Brie": adjustQuality(item, isExpired ? 2 : 1); break; // or: adjustQuality(item, -1 * normalAdjustment);
                 case "Aged Brie": adjustQuality(item, isExpired ? 2 : 1); break; // or: adjustQuality(item, -1 * normalAdjustment);
                 case "Backstage passes to a TAFKAL80ETC concert":
                     adjustQuality(item, 1);
