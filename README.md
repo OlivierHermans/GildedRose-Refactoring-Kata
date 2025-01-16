@@ -1,6 +1,6 @@
-_Support this and all my katas via [Patreon](https://www.patreon.com/EmilyBache)_
-
 > :warning: The JDK version has been bumped from 1.8 to 21 to avoid compiler warnings
+
+_Support this and all my katas via [Patreon](https://www.patreon.com/EmilyBache)_
 
 # Gilded Rose Refactoring Kata
 
