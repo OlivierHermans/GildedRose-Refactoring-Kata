@@ -18,6 +18,8 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
+            // We're not testing the item.name for null as that should be the responsibility of Item which we cannot
+            // alter in this exercise.
             item.sellIn = SULFURAS.equals(item.name) ? item.sellIn : item.sellIn - 1;
 
             final boolean isExpired = item.sellIn < 0;
