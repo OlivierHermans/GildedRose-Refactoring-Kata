@@ -2,8 +2,7 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
-import static com.gildedrose.GildedRose.QUALITY_LOWER_BOUND;
-import static com.gildedrose.GildedRose.QUALITY_UPPER_BOUND;
+import static com.gildedrose.GildedRose.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
@@ -13,7 +12,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Aged Brie", 2, 2)));
+                    new Item(AGED_BRIE, 2, 2)));
 
         app.updateQuality();
 
@@ -26,7 +25,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Aged Brie", -1, 2)));
+                    new Item(AGED_BRIE, -1, 2)));
 
         app.updateQuality();
 
@@ -39,7 +38,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 15, 2)));
+                    new Item(BACKSTAGE_PASSES, 15, 2)));
 
         app.updateQuality();
 
@@ -52,7 +51,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 9, 2)));
+                    new Item(BACKSTAGE_PASSES, 9, 2)));
 
         app.updateQuality();
 
@@ -65,7 +64,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Backstage passes to a TAFKAL80ETC concert", 4, 2)));
+                    new Item(BACKSTAGE_PASSES, 4, 2)));
 
         app.updateQuality();
 
@@ -78,7 +77,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Backstage passes to a TAFKAL80ETC concert", -1, 2)));
+                    new Item(BACKSTAGE_PASSES, -1, 2)));
 
         app.updateQuality();
 
@@ -91,7 +90,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Sulfuras, Hand of Ragnaros", 10, 80)));
+                    new Item(SULFURAS, 10, 80)));
 
         app.updateQuality();
 
@@ -104,7 +103,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Conjured Mana Cake", 10, 10)));
+                    new Item(CONJURED, 10, 10)));
 
         app.updateQuality();
 
@@ -117,7 +116,7 @@ class GildedRoseTest {
         final GildedRose app =
             new GildedRose(
                 buildItems(
-                    new Item("Conjured Mana Cake", 0, 10)));
+                    new Item(CONJURED, 0, 10)));
 
         app.updateQuality();
 

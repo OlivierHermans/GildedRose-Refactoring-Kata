@@ -5,6 +5,11 @@ class GildedRose {
     static final int QUALITY_LOWER_BOUND = 0;
     static final int QUALITY_UPPER_BOUND = 50;
 
+    static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    static final String AGED_BRIE = "Aged Brie";
+    static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    static final String CONJURED = "Conjured Mana Cake";
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -13,7 +18,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            item.sellIn = "Sulfuras, Hand of Ragnaros".equals(item.name) ? item.sellIn : item.sellIn - 1;
+            item.sellIn = SULFURAS.equals(item.name) ? item.sellIn : item.sellIn - 1;
 
             final boolean isExpired = item.sellIn < 0;
 
@@ -29,25 +34,27 @@ class GildedRose {
             // final int normalAdjustment = isExpired ? -2 : -1;
 
             switch (item.name) {
-                case "Aged Brie": adjustQuality(item, isExpired ? 2 : 1); break; // or: adjustQuality(item, -1 * normalAdjustment);
-                case "Backstage passes to a TAFKAL80ETC concert":
-                    if (isExpired) {
-                        item.quality = 0;
-                    } else {
-                        adjustQuality(item, 1);
+                case AGED_BRIE:         adjustQuality(item, isExpired ? 2 : 1); break; // or: adjustQuality(item, -1 * normalAdjustment);
+                case BACKSTAGE_PASSES:  adjustBackstagePassesQuality(item, isExpired); break;
+                case SULFURAS:          break; // no quality adjustment required here
+                case CONJURED:          adjustQuality(item, isExpired ? -4 : -2); break; // or: adjustQuality(item, 2 * normalAdjustment);
+                default:                adjustQuality(item, isExpired ? -2 : -1); break; // or: adjustQuality(item, normalAdjustment);
+            }
+        }
+    }
 
-                        if (item.sellIn < 10) {
-                            adjustQuality(item, 1);
-                        }
+    private static void adjustBackstagePassesQuality(Item item, boolean isExpired) {
+        if (isExpired) {
+            item.quality = 0;
+        } else {
+            adjustQuality(item, 1);
 
-                        if (item.sellIn < 5) {
-                            adjustQuality(item, 1);
-                        }
-                    }
-                    break;
-                case "Sulfuras, Hand of Ragnaros": break;
-                case "Conjured Mana Cake": adjustQuality(item, isExpired ? -4 : -2); break; // or: adjustQuality(item, 2 * normalAdjustment);
-                default: adjustQuality(item, isExpired ? -2 : -1); break; // or: adjustQuality(item, normalAdjustment);
+            if (item.sellIn < 10) {
+                adjustQuality(item, 1);
+            }
+
+            if (item.sellIn < 5) {
+                adjustQuality(item, 1);
             }
         }
     }
