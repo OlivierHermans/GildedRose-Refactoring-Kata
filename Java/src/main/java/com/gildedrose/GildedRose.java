@@ -1,6 +1,10 @@
 package com.gildedrose;
 
 class GildedRose {
+
+    static final int QUALITY_LOWER_BOUND = 0;
+    static final int QUALITY_UPPER_BOUND = 50;
+
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -27,18 +31,18 @@ class GildedRose {
             switch (item.name) {
                 case "Aged Brie": adjustQuality(item, isExpired ? 2 : 1); break; // or: adjustQuality(item, -1 * normalAdjustment);
                 case "Backstage passes to a TAFKAL80ETC concert":
-                    adjustQuality(item, 1);
-
-                    if (item.sellIn < 10) {
-                        adjustQuality(item, 1);
-                    }
-
-                    if (item.sellIn < 5) {
-                        adjustQuality(item, 1);
-                    }
-
                     if (isExpired) {
                         item.quality = 0;
+                    } else {
+                        adjustQuality(item, 1);
+
+                        if (item.sellIn < 10) {
+                            adjustQuality(item, 1);
+                        }
+
+                        if (item.sellIn < 5) {
+                            adjustQuality(item, 1);
+                        }
                     }
                     break;
                 case "Sulfuras, Hand of Ragnaros": break;
@@ -49,6 +53,6 @@ class GildedRose {
     }
 
     static void adjustQuality(Item item, int adjustBy) {
-        item.quality = Math.clamp(item.quality + adjustBy, 0, 50);
+        item.quality = Math.clamp(item.quality + adjustBy, QUALITY_LOWER_BOUND, QUALITY_UPPER_BOUND);
     }
 }

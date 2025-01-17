@@ -2,6 +2,8 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
+import static com.gildedrose.GildedRose.QUALITY_LOWER_BOUND;
+import static com.gildedrose.GildedRose.QUALITY_UPPER_BOUND;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GildedRoseTest {
@@ -151,16 +153,16 @@ class GildedRoseTest {
 
     @Test
     void adjustQuality_upperBoundRespected() {
-        final Item item = new Item("test", 2, 49);
+        final Item item = new Item("test", 2, QUALITY_UPPER_BOUND - 1);
         GildedRose.adjustQuality(item, 2);
-        assertEquals(50, item.quality);
+        assertEquals(QUALITY_UPPER_BOUND, item.quality);
     }
 
     @Test
     void adjustQuality_lowerBoundRespected() {
-        final Item item = new Item("test", 2, 1);
+        final Item item = new Item("test", 2, QUALITY_LOWER_BOUND + 1);
         GildedRose.adjustQuality(item, -2);
-        assertEquals(0, item.quality);
+        assertEquals(QUALITY_LOWER_BOUND, item.quality);
     }
 
     private Item[] buildItems(Item... items) {
