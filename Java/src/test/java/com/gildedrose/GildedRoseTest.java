@@ -9,10 +9,7 @@ class GildedRoseTest {
 
     @Test
     void updateQuality_agedBrieNotExpired_qualityIncreasedByOne() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(AGED_BRIE, 2, 2)));
+        final GildedRose app = buildApp(new Item(AGED_BRIE, 2, 2));
 
         app.updateQuality();
 
@@ -22,10 +19,7 @@ class GildedRoseTest {
 
     @Test
     void updateQuality_agedBrieExpired_qualityIncreasedByTwo() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(AGED_BRIE, -1, 2)));
+        final GildedRose app = buildApp(new Item(AGED_BRIE, -1, 2));
 
         app.updateQuality();
 
@@ -35,10 +29,7 @@ class GildedRoseTest {
 
     @Test
     void  updateQuality_backstagePassesMoreThan10DaysLeft_qualityIncreasedByOne() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(BACKSTAGE_PASSES, 15, 2)));
+        final GildedRose app = buildApp(new Item(BACKSTAGE_PASSES, 15, 2));
 
         app.updateQuality();
 
@@ -48,10 +39,7 @@ class GildedRoseTest {
 
     @Test
     void  updateQuality_backstagePassesMoreThan5AndLessThanIncluding10DaysLeft_qualityIncreasedByTwo() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(BACKSTAGE_PASSES, 9, 2)));
+        final GildedRose app = buildApp(new Item(BACKSTAGE_PASSES, 9, 2));
 
         app.updateQuality();
 
@@ -61,10 +49,7 @@ class GildedRoseTest {
 
     @Test
     void  updateQuality_backstagePassesLessThanIncluding5DaysLeft_qualityIncreasedByThree() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(BACKSTAGE_PASSES, 4, 2)));
+        final GildedRose app = buildApp(new Item(BACKSTAGE_PASSES, 4, 2));
 
         app.updateQuality();
 
@@ -74,10 +59,7 @@ class GildedRoseTest {
 
     @Test
     void  updateQuality_backstagePassesExpired_quality0() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(BACKSTAGE_PASSES, -1, 2)));
+        final GildedRose app = buildApp(new Item(BACKSTAGE_PASSES, -1, 2));
 
         app.updateQuality();
 
@@ -87,10 +69,7 @@ class GildedRoseTest {
 
     @Test
     void updateQuality_sulfuras_shouldNotChange() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(SULFURAS, 10, 80)));
+        final GildedRose app = buildApp(new Item(SULFURAS, 10, 80));
 
         app.updateQuality();
 
@@ -100,10 +79,7 @@ class GildedRoseTest {
 
     @Test
     void updateQuality_conjuredNotExpired_qualityDecreasedBy2() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(CONJURED, 10, 10)));
+        final GildedRose app = buildApp(new Item(CONJURED, 10, 10));
 
         app.updateQuality();
 
@@ -113,10 +89,7 @@ class GildedRoseTest {
 
     @Test
     void updateQuality_conjuredExpired_qualityDecreasedBy4() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item(CONJURED, 0, 10)));
+        final GildedRose app = buildApp(new Item(CONJURED, 0, 10));
 
         app.updateQuality();
 
@@ -126,10 +99,7 @@ class GildedRoseTest {
 
     @Test
     void updateQuality_otherNotExpired_qualityDecreasedBy1() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item("Some other item", 10, 10)));
+        final GildedRose app = buildApp(new Item("Some other item", 10, 10));
 
         app.updateQuality();
 
@@ -139,10 +109,7 @@ class GildedRoseTest {
 
     @Test
     void updateQuality_otherExpired_qualityDecreasedBy2() {
-        final GildedRose app =
-            new GildedRose(
-                buildItems(
-                    new Item("Yet another item", 0, 10)));
+        final GildedRose app = buildApp(new Item("Yet another item", 0, 10));
 
         app.updateQuality();
 
@@ -164,7 +131,7 @@ class GildedRoseTest {
         assertEquals(QUALITY_LOWER_BOUND, item.quality);
     }
 
-    private Item[] buildItems(Item... items) {
-        return items;
+    private GildedRose buildApp(Item... items) {
+        return new GildedRose(items);
     }
 }
